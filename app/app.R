@@ -17,7 +17,7 @@ ui <- fluidPage(
       # Input: Text -----
       h2("Knit text"),
       textInput(inputId = "text",
-                label = "Enter text",
+                label = "Enter text. Use \\n to break lines.",
                 value = "AYAB"),
       numericInput(inputId = "textWidth",
                    value = 200,
