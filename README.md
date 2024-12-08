@@ -9,3 +9,16 @@ To build the app use:
 ```
 shinylive::export("app", "site")
 ```
+
+To build a docker container running the app use:
+
+```
+# Build
+docker build -t marioangst/rayab-web .
+
+# Test, visit http://127.0.0.1:8080
+docker run -p 8080:8080 marioangst/rayab-web
+
+# Push
+docker push marioangst/rayab-web
+```
