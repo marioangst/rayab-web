@@ -6,6 +6,8 @@ library(magick)
 options(shiny.host = "0.0.0.0")
 options(shiny.port = 3000)
 
+dir.create("./tmp",showWarnings = TRUE)
+
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
 
@@ -40,6 +42,9 @@ ui <- fluidPage(
       numericInput(inputId = "convertHeight",
                    value = 100,
                    label = "desired converted image height"),
+      radioButtons(inputId = "convertMethod",
+                   choices = list("quantize","threshold"),
+                   label = "black/white conversion method"),
       downloadButton("downloadConvertImage",
                      "Download converted image"),
     ),
@@ -55,7 +60,7 @@ ui <- fluidPage(
   )
 )
 
-# Define server logic required to draw a histogram ----
+# Define server logic ----
 server <- function(input, output, session) {
 
   # text conversion section -----------
@@ -66,7 +71,7 @@ server <- function(input, output, session) {
       rayab::text_to_ayab(input_text = input$text,
                           width = input$textWidth,
                           height = input$textHeight) |>
-      image_write(tempfile(fileext='png'), format = 'png')
+      image_write(file.path(".","tmp","text.png"), format = 'png')
     list(src = tmpfile, contentType = "image/png")
   })
 
@@ -101,8 +106,9 @@ server <- function(input, output, session) {
       uploadedImage |>
       rayab::magick_to_ayab(
         width = input$convertWidth,
-        height = input$convertHeight) |>
-      image_write(tempfile(fileext='png'), format = 'png')
+        height = input$convertHeight,
+        bw_method = input$convertMethod) |>
+      image_write(file.path(".","tmp","convert.png"), format = 'png')
     list(src = tmpfile, contentType = "image/png")
   })
 
@@ -119,6 +125,8 @@ server <- function(input, output, session) {
       file.copy(img, file)
     }
   )
+  # clear temp dir after session ended
+  session$onSessionEnded(function() {unlink("./tmp/*")})
 }
 
 # Create Shiny app ----
