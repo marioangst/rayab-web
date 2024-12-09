@@ -2,6 +2,10 @@ library(shiny)
 library(rayab)
 library(magick)
 
+# Specify the application port
+options(shiny.host = "0.0.0.0")
+options(shiny.port = 3000)
+
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
 
