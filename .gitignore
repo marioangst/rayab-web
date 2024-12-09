@@ -47,3 +47,11 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# shinylive build
+
+site/
+
+# temporary app outputs
+
+tmp/
