@@ -1,13 +1,15 @@
 #TODO: Add builder stage here to build the app with shinylive
 
-FROM ghcr.io/openfaas/of-watchdog:0.9.6 AS watchdog
+FROM busybox:1.35
 
-FROM alpine:latest
-RUN mkdir /app
-# COPY --from=builder /root/site /app
-COPY /site /app
-COPY --from=watchdog /fwatchdog .
-ENV mode="static"
-ENV static_path="/app"
-HEALTHCHECK --interval=3s CMD [ -e /tmp/.lock ] || exit 1
-CMD ["./fwatchdog"]
+# Create a non-root user to own the files and run our server
+RUN adduser -D static
+USER static
+WORKDIR /home/static
+
+# Copy the static website using multi-stage build semantics
+COPY /site .
+# COPY --from=0 /app/dist .
+
+# Run BusyBox httpd
+CMD ["busybox", "httpd", "-f", "-v", "-p", "3000"]
