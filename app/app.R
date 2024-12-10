@@ -91,19 +91,20 @@ server <- function(input, output, session) {
 
   # image conversion section ----------
 
-  # Start with placeholder imae
-  uploadedImage <- magick::logo
-
-  # When uploading new image
-  observeEvent(input$upload, {
-    if (length(input$upload$datapath))
-      uploadedImage <<- image_read(input$upload$datapath)
+  uploadedImage <-reactive({
+    if(is.null(input$upload)){
+      image <- magick::logo
+    }
+    else{
+      image <- image_read(input$upload$datapath)
+    }
+    return(image)
   })
 
   convertImage <- reactive({
     # write image to tmpfile to send out again
     tmpfile <-
-      uploadedImage |>
+      uploadedImage() |>
       rayab::magick_to_ayab(
         width = input$convertWidth,
         height = input$convertHeight,

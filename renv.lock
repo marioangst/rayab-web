@@ -180,6 +180,29 @@
       ],
       "Hash": "33698c4b3127fc9f506654607fb73676"
     },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.1.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "cli",
+        "generics",
+        "glue",
+        "lifecycle",
+        "magrittr",
+        "methods",
+        "pillar",
+        "rlang",
+        "tibble",
+        "tidyselect",
+        "utils",
+        "vctrs"
+      ],
+      "Hash": "fedd9d00c2944ff00a0e2696ccf048ec"
+    },
     "fansi": {
       "Package": "fansi",
       "Version": "1.0.6",
@@ -228,6 +251,17 @@
         "methods"
       ],
       "Hash": "7f48af39fa27711ea5fbd183b399920d"
+    },
+    "generics": {
+      "Package": "generics",
+      "Version": "0.1.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods"
+      ],
+      "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
     },
     "ggplot2": {
       "Package": "ggplot2",
@@ -418,7 +452,7 @@
       "Package": "magick",
       "Version": "2.8.5",
       "Source": "Repository",
-      "Repository": "https://cloud.r-project.org",
+      "Repository": "CRAN",
       "Requirements": [
         "Rcpp",
         "curl",
@@ -557,10 +591,12 @@
       "Version": "0.0.1",
       "Source": "Repository",
       "Repository": "https://marioangst.r-universe.dev",
+      "RemoteType": "repository",
       "RemoteUrl": "https://github.com/marioangst/rayab",
       "RemoteSha": "e4776dd6574eadbab9f090e4385ffdc01578b6f1",
       "Requirements": [
         "datasets",
+        "dplyr",
         "ggplot2",
         "glue",
         "grDevices",
@@ -569,7 +605,7 @@
         "magick",
         "stats"
       ],
-      "Hash": "65154aa5a1eb7706a8e95f7a9ad3d1cb"
+      "Hash": "31211a322d128ba7945e2edb72a95ac1"
     },
     "renv": {
       "Package": "renv",
@@ -697,6 +733,22 @@
         "vctrs"
       ],
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c"
+    },
+    "tidyselect": {
+      "Package": "tidyselect",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "glue",
+        "lifecycle",
+        "rlang",
+        "vctrs",
+        "withr"
+      ],
+      "Hash": "829f27b9c4919c16b593794a6344d6c0"
     },
     "utf8": {
       "Package": "utf8",
