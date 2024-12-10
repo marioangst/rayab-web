@@ -2,23 +2,36 @@
 
 🤖 🧶 Web interface using the rayab R package to create images ready to be knitted using the AYAB software 🤖 🧶 
 
-The web application can use shinylive to convert a shiny app developped in /app to serve from a static server.
+Currently live at https://ayab.discourses.ch
 
-To build the app use:
+## Build
+
+### shinylive
+
+You can use shinylive to bundle the shiny app developped in /app to a directory ready to be served from a static server. To build the app use:
 
 ```
 shinylive::export("app", "site")
 ```
 
+### Docker
+
 To build a docker container with shiny server running the app use:
 
 ```
-# Build
-docker build -t marioangst/rayab-web .
+docker build -t <my-container> .
+```
 
-# Test, visit http://127.0.0.1:3000
-docker run -p 3000:3000 marioangst/rayab-web
+To run locally, run:
 
-# Push
-docker push marioangst/rayab-web
+```
+docker run -p 3000:3000 <my-container>
+```
+
+The site should now be live at http://127.0.0.1:3000
+
+The latest image can also be pulled from https://hub.docker.com/r/marioangst/rayab-web
+
+```
+docker pull marioangst/rayab-web
 ```
