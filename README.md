@@ -4,6 +4,10 @@
 
 Currently live at https://ayab.discourses.ch
 
+## Development
+
+The application uses shiny to create the web app. Under the hood, it uses the functions developped in the rayab R package at https://github.com/marioangst/rayab
+
 ## Build
 
 ### shinylive
